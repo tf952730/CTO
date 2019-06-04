@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Identity
+
+<!DOCTYPE html>
+
+@inject SignInManager<IdentityUser> SignInManager
+
 <html>
 <head>
     <meta charset="utf-8" />
@@ -32,8 +37,25 @@
                 <ul class="nav navbar-nav">
                     <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
+                    <li><a asp-area="" asp-controller="People" asp-action="Index">人员信息管理</a></li>
                 </ul>
+
+                @if (SignInManager.IsSignedIn(User))
+                {
+
+                    <form asp-controller="Account" asp-action="logout" method="post" id="logoutForm">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" href="javascript:document.getElementById('logoutForm').submit()">登出</a>
+                            </li>
+                        </ul>
+                    </form>
+                }
+                else
+                {
+                    <partial name="_LoginPartial" />
+                }
+
             </div>
         </div>
     </nav>

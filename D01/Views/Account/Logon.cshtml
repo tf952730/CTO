@@ -1,0 +1,38 @@
+﻿@model D01.Models.LoginVM
+@{
+    Layout = "_Layout";
+}
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="text-center mb-6">
+            <h3>欢迎进入2017study在线课程平台</h3>
+        </div>
+        <form class="card" asp-controller="Account" asp-action="Logon" method="post">
+            <div class="card-body p-6">
+                <div class="card-title"></div>
+                <div>
+                    <span class="text-danger field-validation-valid">@ViewData["LoginStatusString"]</span>
+                </div>
+
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="UserName"></label>
+                    <input asp-for="UserName" class="form-control" />
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Password"></label>
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <div class="form-footer">
+                    <button type="submit" class="btn btn-primary btn-block">登录</button>
+                </div>
+            </div>
+        </form>
+        <div class="text-center text-muted">
+            没有账号？<a asp-controller="Account" asp-action="register">注册</a>
+        </div>
+    </div>
+</div>
